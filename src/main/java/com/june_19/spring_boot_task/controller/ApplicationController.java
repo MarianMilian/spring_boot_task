@@ -25,6 +25,7 @@ public class ApplicationController {
     public ResponseEntity<Application>creatApplication(@RequestBody Application application){
 //        application.getCustomer().getId()
         //
+//        /
      return null;
     }
 
