@@ -5,9 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
-
 
 
 @Data
@@ -17,13 +15,18 @@ import java.util.List;
 @Table(name = "customer")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private  int id ;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int customer_ID;
     @Column(name = "name")
     private String name;
     @Column(name = "surname")
     private String surname;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "user")
-    private List<Application> applications =  new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "customer_application",
+            joinColumns = @JoinColumn(name = "customer_ID"),
+            inverseJoinColumns = @JoinColumn(name = "application_ID"))
+    private List<Application> applications;
+
 }

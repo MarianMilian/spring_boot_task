@@ -11,14 +11,21 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Application {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int application_ID;
     @Column(name ="course_name")
     private String nameOfCourses;
     private LocalDate localDate;
+
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "customer_application",
+            joinColumns = @JoinColumn(name = "application_ID"),
+            inverseJoinColumns =@JoinColumn(name = "customer_ID")
+    )
     private Customer customer;
 
 }
