@@ -23,7 +23,7 @@ public class ApplicationController {
 
     @PutMapping ("/customer/application")
     public ResponseEntity<Application>creatApplication(@RequestBody Application application){
-//        application.getCustomer().getId()
+        application.getCustomer().getId()
      return null;
     }
 
